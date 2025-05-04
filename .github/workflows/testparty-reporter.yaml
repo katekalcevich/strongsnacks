@@ -1,0 +1,26 @@
+name: TestParty Reporter
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: TestParty Reporter
+        uses: ./
+        with:
+          testparty_token: ${{ secrets.TESTPARTY_TOKEN }}
+          repository_name: ${{ github.repository }}
+          repository_id: ${{ github.repository_id }}
+          urls: |
+            [
+              "https://v0-strong-snacks.vercel.app//contact",
+              "https://v0-strong-snacks.vercel.app/"
+            ]
+          setups: |
+            []
+          teardowns: |
+            []
